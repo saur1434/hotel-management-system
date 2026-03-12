@@ -19,8 +19,9 @@ const API_CONFIG = {
       return 'http://localhost:3000';
     }
     
-    // Default to production on Render
-    return 'https://hotelweb-1990.onrender.com';
+    // Production - use current domain (same as where frontend is loaded from)
+    // This way, if on hotel-management-system-1-4hut.onrender.com, it connects to same domain
+    return window.location.origin;
   },
   
   // Construct full API endpoint
