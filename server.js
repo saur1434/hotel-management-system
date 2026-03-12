@@ -6,6 +6,8 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const helmet = require('helmet');
+const nodemailer = require('nodemailer');
+const twilio = require('twilio');
 
 // Initialize data on startup (important for Render where file system is ephemeral)
 require('./init-data.js');
@@ -58,10 +60,90 @@ function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-function sendOTP(email, phone, otp) {
-  console.log(`\n📧 OTP for ${email}: ${otp}`);
-  console.log(`📱 OTP for ${phone}: ${otp}\n`);
-  return otp;
+// Configure Email Transporter (Gmail/SMTP)
+const emailTransporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE || 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER || 'your-email@gmail.com',
+    pass: process.env.EMAIL_PASSWORD || 'your-app-password'
+  }
+});
+
+// Configure Twilio for SMS
+const twilioClient = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
+  ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
+  : null;
+
+// Send OTP via Email and SMS
+async function sendOTP(email, phone, otp) {
+  console.log(`\n🔐 OTP Generated: ${otp} (Valid for 5 minutes)`);
+  
+  let emailSent = false;
+  let smsSent = false;
+
+  // Send Email
+  try {
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: '🔐 Your OTP Code - Hotel Management System',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+              <h2 style="color: white; margin: 0;">Hotel Management System</h2>
+            </div>
+            <div style="padding: 30px; background-color: #f8f9fa; border-radius: 0 0 8px 8px;">
+              <p style="color: #333; font-size: 16px;">Hi there,</p>
+              <p style="color: #666;">Your OTP for registration is:</p>
+              <div style="background-color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 2px dashed #667eea;">
+                <h1 style="color: #667eea; letter-spacing: 5px; margin: 0;">${otp}</h1>
+              </div>
+              <p style="color: #666; font-size: 14px;">⏰ This code expires in 5 minutes</p>
+              <p style="color: #666; font-size: 14px;">🔒 Never share this code with anyone</p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+              <p style="color: #999; font-size: 12px; text-align: center;">© 2026 Hotel Management System. All rights reserved.</p>
+            </div>
+          </div>
+        `
+      };
+
+      await emailTransporter.sendMail(mailOptions);
+      console.log(`✅ Email sent to ${email}`);
+      emailSent = true;
+    } else {
+      console.log(`⚠️ Email credentials not configured. OTP display: ${otp}`);
+    }
+  } catch (emailError) {
+    console.error(`❌ Email send failed: ${emailError.message}`);
+  }
+
+  // Send SMS
+  try {
+    if (twilioClient && process.env.TWILIO_PHONE_NUMBER) {
+      const cleanPhone = phone.replace(/[\s\-\+\(\)]/g, '');
+      const phoneWithCountry = cleanPhone.startsWith('+') ? cleanPhone : '+' + cleanPhone;
+      
+      await twilioClient.messages.create({
+        body: `🔐 Your OTP code is: ${otp} (Valid for 5 minutes) - Hotel Management System`,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: phoneWithCountry
+      });
+      console.log(`✅ SMS sent to ${phone}`);
+      smsSent = true;
+    } else {
+      console.log(`⚠️ SMS not configured. OTP: ${otp}`);
+    }
+  } catch (smsError) {
+    console.error(`❌ SMS send failed: ${smsError.message}`);
+  }
+
+  return {
+    otp,
+    emailSent,
+    smsSent,
+    message: `OTP sent${emailSent ? ' via email' : ''}${smsSent && emailSent ? ' and' : ''}${smsSent ? ' via SMS' : ''}`
+  };
 }
 
 // Hash password
@@ -234,13 +316,15 @@ app.post('/api/customer/register', async (req, res) => {
     attempts: 0
   };
 
-  sendOTP(email, phone, otp);
+  const otpResult = await sendOTP(email, phone, otp);
 
   return res.status(200).json({
     success: true,
-    message: 'OTP sent to email and phone',
+    message: otpResult.message,
     tempId,
-    requiresOTP: true
+    requiresOTP: true,
+    emailSent: otpResult.emailSent,
+    smsSent: otpResult.smsSent
   });
 });
 
@@ -406,13 +490,15 @@ app.post('/api/owner/register', async (req, res) => {
     attempts: 0
   };
 
-  sendOTP(ownerEmail, phone, otp);
+  const otpResult = await sendOTP(ownerEmail, phone, otp);
 
   return res.status(200).json({
     success: true,
-    message: 'OTP sent to email and phone',
+    message: otpResult.message,
     tempId,
-    requiresOTP: true
+    requiresOTP: true,
+    emailSent: otpResult.emailSent,
+    smsSent: otpResult.smsSent
   });
 });
 
