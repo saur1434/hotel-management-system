@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "hotelId": 1771564508824,
+    "hotelName": "Patna Heritage Resort",
+    "reviewerName": "Rajesh Kumar",
+    "reviewerEmail": "rajesh@example.com",
+    "rating": 5,
+    "title": "Excellent Stay!",
+    "review": "Great location, clean rooms, and friendly staff. Highly recommended!",
+    "createdAt": "2026-03-05T10:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "hotelId": 1771564508824,
+    "hotelName": "Patna Heritage Resort",
+    "reviewerName": "Priya Singh",
+    "reviewerEmail": "priya@example.com",
+    "rating": 4,
+    "title": "Good Value for Money",
+    "review": "Very nice property with reasonable rates. Food was delicious.",
+    "createdAt": "2026-03-04T14:20:00.000Z"
+  },
+  {
+    "id": 3,
+    "hotelId": 1771606955158,
+    "hotelName": "Bamboo Cottage Patna",
+    "reviewerName": "Amit Verma",
+    "reviewerEmail": "amit@example.com",
+    "rating": 5,
+    "title": "Beautiful and Peaceful",
+    "review": "Amazing gardens and bamboo structure. Perfect for a relaxing getaway!",
+    "createdAt": "2026-03-03T09:15:00.000Z"
+  },
+  {
+    "id": 4,
+    "hotelId": 1771606955158,
+    "hotelName": "Bamboo Cottage Patna",
+    "reviewerName": "Neha Patel",
+    "reviewerEmail": "neha@example.com",
+    "rating": 5,
+    "title": "Best Experience Ever",
+    "review": "Loved the eco-friendly design and warm hospitality. Will visit again!",
+    "createdAt": "2026-03-02T16:45:00.000Z"
+  },
+  {
+    "id": 5,
+    "hotelId": 1771700000000,
+    "hotelName": "Delhi Luxury Villas",
+    "reviewerName": "Vikram Singh",
+    "reviewerEmail": "vikram@example.com",
+    "rating": 5,
+    "title": "Luxury at Its Best",
+    "review": "Premium amenities, spacious rooms, and outstanding service. Worth every penny!",
+    "createdAt": "2026-03-01T11:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "hotelId": 1771700000001,
+    "hotelName": "Mumbai Beach Resort",
+    "reviewerName": "Anjali Sharma",
+    "reviewerEmail": "anjali@example.com",
+    "rating": 5,
+    "title": "Beach Paradise",
+    "review": "Stunning views, private beach access, and excellent seafood restaurant!",
+    "createdAt": "2026-02-28T13:30:00.000Z"
+  },
+  {
+    "id": 7,
+    "hotelId": 1771700000002,
+    "hotelName": "Bangalore Tech Hub Rooms",
+    "reviewerName": "Rohit Tech",
+    "reviewerEmail": "rohit@example.com",
+    "rating": 4,
+    "title": "Perfect for Business Travelers",
+    "review": "Great internet speed, comfortable rooms, and business center well equipped.",
+    "createdAt": "2026-02-27T10:15:00.000Z"
+  },
+  {
+    "id": 8,
+    "hotelId": 1771700000003,
+    "hotelName": "Goa Beach Cabins",
+    "reviewerName": "Deepak Menon",
+    "reviewerEmail": "deepak@example.com",
+    "rating": 5,
+    "title": "Paradise Found",
+    "review": "Cozy cabins, water sports activities, and beautiful sunset views. Amazing!",
+    "createdAt": "2026-02-26T15:50:00.000Z"
+  }
+]

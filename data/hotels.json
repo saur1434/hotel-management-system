@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1771564508824,
+    "hostelName": "Patna Heritage Resort",
+    "ownerEmail": "saurabhsingham1435kumar@gmail.com",
+    "phone": "9103674693",
+    "location": "Patna, Bihar",
+    "registeredAt": "2026-02-20T05:15:08.824Z"
+  },
+  {
+    "id": 1771700000000,
+    "hostelName": "Delhi Luxury Villas",
+    "ownerEmail": "delhi@gocabingo.com",
+    "phone": "9876543210",
+    "location": "New Delhi, India",
+    "registeredAt": "2026-02-20T10:00:00.000Z"
+  },
+  {
+    "id": 1771700000001,
+    "hostelName": "Mumbai Beach Resort",
+    "ownerEmail": "mumbai@gocabingo.com",
+    "phone": "9123456789",
+    "location": "Mumbai, Maharashtra",
+    "registeredAt": "2026-02-21T10:00:00.000Z"
+  }
+]

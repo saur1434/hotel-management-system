@@ -1,0 +1,45 @@
+{
+  "en": {
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.rooms": "Rooms",
+    "nav.restaurant": "Restaurant",
+    "nav.gallery": "Gallery",
+    "nav.contact": "Contact",
+    "nav.privatecabin": "Quiet Seating",
+    "nav.owner": "Owner",
+    "nav.user": "User",
+
+    "home.title": "Welcome, dear guest",
+    "home.desc": "Experience world-class services at GoCabn Go - Your curated area booking network.",
+    "btn.moreInfo": "More Info",
+
+    "book.checkin": "Check-in:",
+    "book.checkout": "Check-out:",
+    "book.adults": "Adults:",
+    "book.children": "Children:",
+    "btn.search": "Search",
+
+    "btn.readMore": "Read More",
+    "btn.viewAll": "View All",
+    "btn.viewGallery": "View Gallery",
+
+    "footer.about": "GoCabn Go - Connecting travelers with curated experiences in premium locations.",
+    "footer.acceptedMethods": "Accepted payment methods",
+    "footer.recentNews": "Recent News",
+    "footer.forCustomers": "For Customers",
+    "footer.contactUs": "Contact Us",
+
+    "admin.title": "Admin Dashboard",
+    "menu.dashboard": "Dashboard",
+    "menu.owners": "Owners",
+    "menu.customers": "Customers",
+    "menu.bookings": "Bookings",
+    "menu.payments": "Payments",
+    "menu.logout": "Logout",
+    "admin.approve": "Approve",
+
+    "loading": "Loading...",
+    "noData": "No data found"
+  }
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "hotelId": 1771564508824,
+    "hotelName": "Patna Heritage Resort",
+    "photoUrl": "https://images.unsplash.com/photo-1566677617378-cbf4dd32fdf0?w=600&h=400&fit=crop",
+    "caption": "Luxurious Room View",
+    "type": "room",
+    "uploadedBy": "owner_patna_1"
+  },
+  {
+    "id": 2,
+    "hotelId": 1771564508824,
+    "hotelName": "Patna Heritage Resort",
+    "photoUrl": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=400&fit=crop",
+    "caption": "Reception Area",
+    "type": "lobby",
+    "uploadedBy": "owner_patna_1"
+  },
+  {
+    "id": 3,
+    "hotelId": 1771564508824,
+    "hotelName": "Patna Heritage Resort",
+    "photoUrl": "https://images.unsplash.com/photo-1571003123670-860bda76d87e?w=600&h=400&fit=crop",
+    "caption": "Garden Area",
+    "type": "amenity",
+    "uploadedBy": "owner_patna_1"
+  },
+  {
+    "id": 4,
+    "hotelId": 1771606955158,
+    "hotelName": "Bamboo Cottage Patna",
+    "photoUrl": "https://images.unsplash.com/photo-1514432324607-2e467f4af445?w=600&h=400&fit=crop",
+    "caption": "Eco-Friendly Room",
+    "type": "room",
+    "uploadedBy": "owner_patna_2"
+  },
+  {
+    "id": 5,
+    "hotelId": 1771606955158,
+    "hotelName": "Bamboo Cottage Patna",
+    "photoUrl": "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=600&h=400&fit=crop",
+    "caption": "Bamboo Garden",
+    "type": "amenity",
+    "uploadedBy": "owner_patna_2"
+  },
+  {
+    "id": 6,
+    "hotelId": 1771606955158,
+    "hotelName": "Bamboo Cottage Patna",
+    "photoUrl": "https://images.unsplash.com/photo-1522159525235-dad2efffdc8d?w=600&h=400&fit=crop",
+    "caption": "Dining Area",
+    "type": "amenity",
+    "uploadedBy": "owner_patna_2"
+  },
+  {
+    "id": 7,
+    "hotelId": 1771700000000,
+    "hotelName": "Delhi Luxury Villas",
+    "photoUrl": "https://images.unsplash.com/photo-1578500171191-97b2bac3d541?w=600&h=400&fit=crop",
+    "caption": "Premium Suite",
+    "type": "room",
+    "uploadedBy": "owner_delhi"
+  },
+  {
+    "id": 8,
+    "hotelId": 1771700000000,
+    "hotelName": "Delhi Luxury Villas",
+    "photoUrl": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&h=400&fit=crop",
+    "caption": "Infinity Pool",
+    "type": "amenity",
+    "uploadedBy": "owner_delhi"
+  },
+  {
+    "id": 9,
+    "hotelId": 1771700000001,
+    "hotelName": "Mumbai Beach Resort",
+    "photoUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    "caption": "Beach Room",
+    "type": "room",
+    "uploadedBy": "owner_mumbai"
+  },
+  {
+    "id": 10,
+    "hotelId": 1771700000001,
+    "hotelName": "Mumbai Beach Resort",
+    "photoUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop",
+    "caption": "Ocean View",
+    "type": "amenity",
+    "uploadedBy": "owner_mumbai"
+  },
+  {
+    "id": 11,
+    "hotelId": 1771700000002,
+    "hotelName": "Bangalore Tech Hub Rooms",
+    "photoUrl": "https://images.unsplash.com/photo-1486718448742-163732cd3d3c?w=600&h=400&fit=crop",
+    "caption": "Business Suite",
+    "type": "room",
+    "uploadedBy": "owner_bangalore"
+  },
+  {
+    "id": 12,
+    "hotelId": 1771700000002,
+    "hotelName": "Bangalore Tech Hub Rooms",
+    "photoUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop",
+    "caption": "Co-working Space",
+    "type": "amenity",
+    "uploadedBy": "owner_bangalore"
+  },
+  {
+    "id": 13,
+    "hotelId": 1771700000003,
+    "hotelName": "Goa Beach Cabins",
+    "photoUrl": "https://images.unsplash.com/photo-1571896349842-b08556e50857?w=600&h=400&fit=crop",
+    "caption": "Beachside Cabin",
+    "type": "room",
+    "uploadedBy": "owner_goa"
+  },
+  {
+    "id": 14,
+    "hotelId": 1771700000003,
+    "hotelName": "Goa Beach Cabins",
+    "photoUrl": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop",
+    "caption": "Sunset View",
+    "type": "amenity",
+    "uploadedBy": "owner_goa"
+  }
+]

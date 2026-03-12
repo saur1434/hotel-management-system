@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1771564636428,
+    "fullName": "dsaraw",
+    "email": "rajakumar17889@gmail.com",
+    "phone": "9103674693",
+    "password": "$2a$10$R0n0vt5XYL4sitXMGa.7JOVa.FnH8eXYe0FQ.R5LmdWIX1/3.u62i",
+    "registeredAt": "2026-02-20T05:17:16.428Z",
+    "verified": true,
+    "lastLogin": "2026-02-20T05:17:16.428Z"
+  },
+  {
+    "id": 1771607145400,
+    "fullName": "szfmsdgkl l",
+    "email": "saurabhsingham143kumar@gmail.com",
+    "phone": "9103674693",
+    "password": "$2a$10$/NEebrvncuqGwHAxtKv2feVv3xKNpP0CM7Iz0kP0y4juBJVkCqKGK",
+    "registeredAt": "2026-02-20T17:05:45.400Z",
+    "verified": true,
+    "lastLogin": "2026-02-20T17:05:45.400Z"
+  },
+  {
+    "id": 1771607451964,
+    "fullName": "dqfyfsqyfqs",
+    "email": "saurabhsingham135kumar@gmail.com",
+    "phone": "9876543210",
+    "password": "$2a$10$Pjlhvmwl44KfdYK739gPJOeuEv/XKzRsBU0m6RC3oW./GEVRyWIhy",
+    "registeredAt": "2026-02-20T17:10:51.964Z",
+    "verified": true,
+    "lastLogin": "2026-02-20T17:10:51.964Z"
+  }
+]
