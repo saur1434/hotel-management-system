@@ -18,7 +18,47 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const JWT_EXPIRE = '7d';
 
 // Security Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://code.jquery.com',
+        'https://unpkg.com',
+        'https://cdnjs.cloudflare.com',
+        'https://cdn.jsdelivr.net'
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://cdnjs.cloudflare.com',
+        'https://unpkg.com',
+        'https://cdn.jsdelivr.net',
+        'https://pro.fontawesome.com'
+      ],
+      imgSrc: [
+        "'self'",
+        'data:',
+        'https:',
+        'https://images.unsplash.com',
+        'https://img.icons8.com'
+      ],
+      connectSrc: [
+        "'self'",
+        'https://tile.openstreetmap.org',
+        'https://api.tiles.mapbox.com'
+      ],
+      fontSrc: [
+        "'self'",
+        'https://pro.fontawesome.com',
+        'https://cdnjs.cloudflare.com'
+      ],
+      frameSrc: ["'self'"]
+    }
+  }
+}));
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS?.split(',').map(o => o.trim()) || [
     'http://localhost:3000', 
