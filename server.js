@@ -125,34 +125,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// 3️⃣ AUDIT LOGGING - Log all sensitive operations
-const auditLogFile = path.join(dataDir, 'audit.log');
-function logAudit(action, userId, details, status = 'success') {
-  const timestamp = new Date().toISOString();
-  const logEntry = {
-    timestamp,
-    action,
-    userId: userId || 'anonymous',
-    details,
-    status,
-    ip: this.ip || 'unknown'
-  };
-  
-  const logMessage = `[${timestamp}] ${action} | User: ${userId || 'anonymous'} | Status: ${status} | Details: ${JSON.stringify(details)}\n`;
-  
-  try {
-    fs.appendFileSync(auditLogFile, logMessage, 'utf8');
-  } catch (error) {
-    console.error('❌ Audit log error:', error.message);
-  }
-}
-
-// Make audit logger available to request context
-app.use((req, res, next) => {
-  req.auditLog = logAudit.bind({ ip: req.ip });
-  next();
-});
-
 // 4️⃣ DATA ENCRYPTION UTILITIES - Encrypt sensitive data at rest
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || 'default-encryption-key-change-in-production';
 const ALGORITHM = 'aes-256-cbc';
@@ -198,6 +170,19 @@ const adminFile = path.join(dataDir, 'admin.json');
 const bookingsFile = path.join(dataDir, 'bookings.json');
 const paymentsFile = path.join(dataDir, 'payments.json');
 const tokensFile = path.join(dataDir, 'tokens.json');
+
+// 3️⃣ AUDIT LOGGING - Log all sensitive operations
+const auditLogFile = path.join(dataDir, 'audit.log');
+function logAudit(action, userId, details, status = 'success') {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] ${action} | User: ${userId || 'anonymous'} | Status: ${status} | Details: ${JSON.stringify(details)}\n`;
+  
+  try {
+    fs.appendFileSync(auditLogFile, logMessage, 'utf8');
+  } catch (error) {
+    console.error('❌ Audit log error:', error.message);
+  }
+}
 
 // In-memory OTP storage (use database in production)
 const otpStore = {};
