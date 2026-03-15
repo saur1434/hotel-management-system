@@ -63,6 +63,10 @@ app.use(helmet({
     }
   }
 }));
+
+// Trust proxy (required for Render and other reverse proxies)
+app.set('trust proxy', 1);
+
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS?.split(',').map(o => o.trim()) || [
     'http://localhost:3000', 
@@ -86,23 +90,26 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  skip: (req) => req.path === '/health' // Skip health checks
+  skip: (req) => req.path === '/health', // Skip health checks
+  keyGenerator: (req, res) => req.ip // Use IP from trust proxy
 });
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // Stricter limit for auth endpoints
   message: 'Too many login attempts, please try again later.',
-  skipSuccessfulRequests: true
+  skipSuccessfulRequests: true,
+  keyGenerator: (req, res) => req.ip // Use IP from trust proxy
 });
 
 const paymentLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 20, // Max 20 payment attempts per hour
-  message: 'Too many payment attempts, please try again later.'
+  message: 'Too many payment attempts, please try again later.',
+  keyGenerator: (req, res) => req.ip // Use IP from trust proxy
 });
 
-app.use(limiter); // Apply to all routes
+app.use(limiter); // Apply to all routes (with trust proxy support)
 
 // 2️⃣ INPUT SANITIZATION - Prevent XSS and injection attacks
 app.use((req, res, next) => {
