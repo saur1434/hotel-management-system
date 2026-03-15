@@ -209,7 +209,7 @@ header ul li a:hover::after {
 @media only screen and (max-width: 768px) {
   header ul,
   .nav-menu {
-    display: block;
+    display: block !important;
     position: fixed;
     left: -100%;
     top: 5rem;
@@ -218,6 +218,7 @@ header ul li a:hover::after {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(16, 211, 255, 0.2);
     width: 100%;
+    height: calc(100vh - 5rem);
     max-width: 100%;
     border-radius: 0;
     text-align: center;
@@ -225,23 +226,29 @@ header ul li a:hover::after {
     box-shadow: 0 15px 40px rgba(16, 211, 255, 0.2);
     z-index: 20;
     padding: 20px 0;
+    overflow-y: auto;
+    list-style: none;
   }
 
   header ul.active,
   .nav-menu.active {
-    left: 0%;
+    left: 0% !important;
   }
 
   header ul li,
   .nav-menu li {
     margin: 1.5rem 0;
     padding: 0 15px;
+    list-style: none;
   }
 
   header ul li a,
   .nav-menu li a {
     color: #d0d0d0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    padding: 12px 0;
+    font-weight: 600;
   }
 
   header ul li a:hover,
@@ -250,8 +257,35 @@ header ul li a:hover::after {
     text-shadow: 0 0 10px rgba(16, 211, 255, 0.4);
   }
 
+  /* Mobile Auth Buttons */
+  .nav-auth-btn {
+    display: inline-block !important;
+    padding: 10px 16px !important;
+    margin: 8px 5px !important;
+    font-size: 12px !important;
+    border-radius: 6px !important;
+    width: auto !important;
+  }
+
+  .nav-auth-btn.admin-btn {
+    background: rgba(102, 126, 234, 0.2);
+    color: #10d3ff;
+    border: 1px solid rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-auth-btn.owner-btn {
+    background: rgba(16, 211, 255, 0.1);
+    color: #10d3ff;
+    border: 1px solid rgba(16, 211, 255, 0.2);
+  }
+
+  .nav-auth-btn.customer-btn {
+    background: linear-gradient(135deg, rgba(16, 211, 255, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border: 1px solid rgba(16, 211, 255, 0.3);
+  }
+
   .hambuger {
-    display: block;
+    display: block !important;
     cursor: pointer;
     z-index: 100;
   }
@@ -2035,20 +2069,71 @@ footer li:hover {
 
   header ul,
   .nav-menu {
+    display: block !important;
+    position: fixed !important;
+    left: -100% !important;
+    top: 5rem;
     width: 100vw;
     max-width: 100%;
+    height: calc(100vh - 5rem);
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.98) 0%, rgba(15, 20, 25, 0.98) 100%) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 211, 255, 0.2);
+    padding: 20px 0;
+    text-align: center;
+    z-index: 20;
+    overflow-y: auto;
+    transition: left 0.5s ease !important;
+  }
+
+  header ul.active,
+  .nav-menu.active {
+    left: 0% !important;
   }
 
   header ul li,
   .nav-menu li {
     margin: 1.5rem 0;
+    list-style: none;
+  }
+
+  header ul li a,
+  .nav-menu li a {
+    color: #d0d0d0 !important;
+    display: block;
+    padding: 12px 0;
+  }
+
+  header ul li a:hover,
+  .nav-menu li a:hover {
+    color: #10d3ff !important;
+    text-shadow: 0 0 10px rgba(16, 211, 255, 0.4) !important;
   }
 
   .nav-auth-btn {
-    padding: 8px 12px;
-    font-size: 11px;
-    width: auto;
-    margin: 5px;
+    display: inline-block !important;
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    width: auto !important;
+    margin: 5px !important;
+    border-radius: 6px !important;
+  }
+
+  .nav-auth-btn.admin-btn {
+    background: rgba(102, 126, 234, 0.2);
+    color: #10d3ff;
+    border: 1px solid rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-auth-btn.owner-btn {
+    background: rgba(16, 211, 255, 0.1);
+    color: #10d3ff;
+    border: 1px solid rgba(16, 211, 255, 0.2);
+  }
+
+  .nav-auth-btn.customer-btn {
+    background: linear-gradient(135deg, rgba(16, 211, 255, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border: 1px solid rgba(16, 211, 255, 0.3);
   }
 
   /* Typography - Larger base for small screens */
@@ -2317,14 +2402,71 @@ footer li:hover {
 
   header ul,
   .nav-menu {
+    display: block !important;
+    position: fixed !important;
+    left: -100% !important;
+    top: 5rem;
     width: 100vw;
     max-width: 100%;
+    height: calc(100vh - 5rem);
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.98) 0%, rgba(15, 20, 25, 0.98) 100%) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 211, 255, 0.2);
+    padding: 20px 0;
+    text-align: center;
+    z-index: 20;
+    overflow-y: auto;
+    transition: left 0.5s ease !important;
+  }
+
+  header ul.active,
+  .nav-menu.active {
+    left: 0% !important;
+  }
+
+  header ul li,
+  .nav-menu li {
+    margin: 1.5rem 0;
+    list-style: none;
+  }
+
+  header ul li a,
+  .nav-menu li a {
+    color: #d0d0d0 !important;
+    display: block;
+    padding: 12px 0;
+  }
+
+  header ul li a:hover,
+  .nav-menu li a:hover {
+    color: #10d3ff !important;
+    text-shadow: 0 0 10px rgba(16, 211, 255, 0.4) !important;
   }
 
   .nav-auth-btn {
-    padding: 8px 12px;
-    font-size: 12px;
-    width: auto;
+    display: inline-block !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    width: auto !important;
+    margin: 5px !important;
+    border-radius: 6px !important;
+  }
+
+  .nav-auth-btn.admin-btn {
+    background: rgba(102, 126, 234, 0.2);
+    color: #10d3ff;
+    border: 1px solid rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-auth-btn.owner-btn {
+    background: rgba(16, 211, 255, 0.1);
+    color: #10d3ff;
+    border: 1px solid rgba(16, 211, 255, 0.2);
+  }
+
+  .nav-auth-btn.customer-btn {
+    background: linear-gradient(135deg, rgba(16, 211, 255, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border: 1px solid rgba(16, 211, 255, 0.3);
   }
 
   /* Typography */
