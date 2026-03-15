@@ -239,7 +239,7 @@
               <div id="ownerRegisterFields">
                 <div class="form-group">
                   <label>Property Name</label>
-                  <input type="text" name="hostelName" placeholder="Your property name" required>
+                  <input type="text" name="hostelName" placeholder="Your hotel name" required>
                 </div>
                 <div class="form-group">
                   <label>Owner Email</label>
@@ -703,7 +703,7 @@
         confirmPassword: form.querySelectorAll('input[type="password"]')[1]?.value || ''
       };
     } else {
-      // For owner: text (hostelName), email, tel (phone), text (location), password, confirmPassword
+      // For owner: text (hotelName), email, tel (phone), text (location), password, confirmPassword
       const allInputs = form.querySelectorAll('input');
       let textInputs = 0;
       let hostelName = '', location = '';
@@ -748,7 +748,7 @@
     }
 
     if (userType === 'owner' && !formData.hostelName) {
-      alert('❌ Hostel name is required');
+      alert('❌ Hotel name is required');
       return;
     }
     
