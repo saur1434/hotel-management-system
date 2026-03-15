@@ -96,14 +96,14 @@
     localStorage.removeItem('userData');
     localStorage.removeItem('authToken');
     localStorage.removeItem('adminToken');
-    alert('You have been logged out successfully');
+    alert('You have been signed out successfully');
     window.location.href = 'index.html';
   };
   
   // Require login - redirect to index if not logged in
   window.requireLogin = function() {
     if (!isUserLoggedIn()) {
-      alert('Please log in first');
+      alert('Please sign in first');
       window.location.href = 'index.html';
       return false;
     }
@@ -176,22 +176,22 @@
         <div class="modal-content">
           <button class="modal-close">&times;</button>
           <div class="modal-header">
-            <h2>Admin Dashboard</h2>
-            <p>Super Admin Login</p>
+            <h2>Administrator Dashboard</h2>
+            <p>Administrator Access</p>
           </div>
 
           <!-- Admin Login Form -->
           <div id="admin-login" class="tab-content active">
             <form id="adminLoginForm">
               <div class="form-group">
-                <label>Admin Email</label>
+                <label>Administrator Email</label>
                 <input type="email" name="adminEmail" placeholder="admin@example.com" required>
               </div>
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Enter password" required>
               </div>
-              <button type="submit" class="btn-submit">Login as Admin</button>
+              <button type="submit" class="btn-submit">Sign In as Administrator</button>
             </form>
           </div>
         </div>
@@ -207,11 +207,11 @@
         <div class="modal-content">
           <button class="modal-close">&times;</button>
           <div class="modal-header">
-            <h2>Hotel Owner Portal</h2>
-            <p>Register or login your hostel</p>
+            <h2>Property Owner Portal</h2>
+            <p>Register or sign in your property</p>
           </div>
           <div class="auth-tabs">
-            <button type="button" class="tab-btn active" data-tab="owner-login">Login</button>
+            <button type="button" class="tab-btn active" data-tab="owner-login">Sign In</button>
             <button type="button" class="tab-btn" data-tab="owner-register">Register</button>
           </div>
 
@@ -220,13 +220,13 @@
             <form id="ownerLoginForm">
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="ownerEmail" placeholder="your@hostel.com" required>
+                <input type="email" name="ownerEmail" placeholder="your@property.com" required>
               </div>
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Enter password" required>
               </div>
-              <button type="submit" class="btn-submit">Login</button>
+              <button type="submit" class="btn-submit">Sign In</button>
             </form>
           </div>
 
@@ -235,8 +235,8 @@
             <form id="ownerRegisterForm">
               <div id="ownerRegisterFields">
                 <div class="form-group">
-                  <label>Hostel Name</label>
-                  <input type="text" name="hostelName" placeholder="Your hostel name" required>
+                  <label>Property Name</label>
+                  <input type="text" name="hostelName" placeholder="Your property name" required>
                 </div>
                 <div class="form-group">
                   <label>Owner Email</label>
@@ -244,17 +244,17 @@
                   <small class="form-error" style="display:none;color:#e74c3c;"></small>
                 </div>
                 <div class="form-group">
-                  <label>Phone (10-15 digits)</label>
+                  <label>Phone Number (10-15 digits)</label>
                   <input type="tel" name="phone" placeholder="+1 234 567 8900" required>
                   <small class="form-error" style="display:none;color:#e74c3c;"></small>
                 </div>
                 <div class="form-group">
                   <label>Location</label>
-                  <input type="text" name="location" placeholder="City, Country" required>
+                  <input type="text" name="location" placeholder="City, State" required>
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" placeholder="Min 6 characters" required>
+                  <input type="password" name="password" placeholder="Minimum 6 characters" required>
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
@@ -263,7 +263,7 @@
                 <div class="form-checkbox" style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin: 15px 0;">
                   <input type="checkbox" id="ownerTermsCheckbox" name="agreeTerms" required>
                   <label for="ownerTermsCheckbox" style="margin: 0;">
-                    I agree to the <span style="color: #667eea; cursor: pointer; font-weight: bold;" onclick="displayTermsModal('owner')">Terms & Conditions</span> and <span style="color: #667eea; cursor: pointer; font-weight: bold;" onclick="displayTermsModal('owner')">Cabin Design Policy</span>
+                    I agree to the <span style="color: #667eea; cursor: pointer; font-weight: bold;" onclick="displayTermsModal('owner')">Terms & Conditions</span> and <span style="color: #667eea; cursor: pointer; font-weight: bold;" onclick="displayTermsModal('owner')">Property Guidelines</span>
                   </label>
                 </div>
               </div>
@@ -278,7 +278,7 @@
                 </div>
                 <small class="otp-error" style="display:none;color:#e74c3c;"></small>
               </div>
-              <button type="submit" class="btn-submit" id="ownerRegisterBtn">Register Hostel</button>
+              <button type="submit" class="btn-submit" id="ownerRegisterBtn">Register Property</button>
             </form>
           </div>
         </div>
@@ -294,11 +294,11 @@
         <div class="modal-content">
           <button class="modal-close">&times;</button>
           <div class="modal-header">
-            <h2>Customer Account</h2>
+            <h2>Guest Account</h2>
             <p>Sign in or create a new account</p>
           </div>
           <div class="auth-tabs">
-            <button type="button" class="tab-btn active" data-tab="customer-login">Login</button>
+            <button type="button" class="tab-btn active" data-tab="customer-login">Sign In</button>
             <button type="button" class="tab-btn" data-tab="customer-register">Register</button>
           </div>
 
@@ -315,9 +315,9 @@
               </div>
               <div class="form-checkbox">
                 <input type="checkbox" id="rememberMe" name="rememberMe">
-                <label for="rememberMe">Remember me</label>
+                <label for="rememberMe">Keep me signed in</label>
               </div>
-              <button type="submit" class="btn-submit">Login</button>
+              <button type="submit" class="btn-submit">Sign In</button>
             </form>
           </div>
 
@@ -335,13 +335,13 @@
                   <small class="form-error" style="display:none;color:#e74c3c;"></small>
                 </div>
                 <div class="form-group">
-                  <label>Phone (10-15 digits)</label>
+                  <label>Phone Number (10-15 digits)</label>
                   <input type="tel" name="phone" placeholder="+1 234 567 8900" required>
                   <small class="form-error" style="display:none;color:#e74c3c;"></small>
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" placeholder="Min 6 characters" required>
+                  <input type="password" name="password" placeholder="Minimum 6 characters" required>
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
