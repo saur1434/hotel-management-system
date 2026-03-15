@@ -429,14 +429,86 @@
         font-size: 24px;
       }
     }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 12px;
+      }
+
+      .header {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .header h1 {
+        font-size: 20px;
+      }
+
+      .sidebar-menu {
+        gap: 6px;
+      }
+
+      .sidebar-menu a {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .profile-info {
+        gap: 15px;
+      }
+
+      .profile-field {
+        padding: 12px;
+      }
+
+      .profile-field label {
+        font-size: 12px;
+      }
+
+      .profile-field input {
+        font-size: 14px;
+      }
+
+      .hotel-grid {
+        gap: 12px;
+      }
+
+      .hotel-card {
+        border-radius: 10px;
+      }
+
+      .hotel-card h3 {
+        font-size: 16px;
+      }
+
+      .hotel-card p {
+        font-size: 13px;
+      }
+
+      .booking-table {
+        font-size: 11px;
+        overflow-x: auto;
+      }
+
+      .booking-table th,
+      .booking-table td {
+        padding: 8px 4px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
     }
+  
   </style>
 </head>
 <body>
   <div class="dashboard-container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>🏨 My Account</h2>
+      </h2>My Account</h2>
       <ul class="sidebar-menu">
         <li><a class="menu-link active" data-section="profile"><i class="fas fa-user"></i> My Profile</a></li>
         <li><a class="menu-link" data-section="hotels"><i class="fas fa-hotel"></i> Find Hotels</a></li>

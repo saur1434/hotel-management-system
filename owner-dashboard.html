@@ -440,6 +440,61 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
     }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 12px;
+      }
+
+      .header {
+        padding: 12px;
+        gap: 10px;
+      }
+
+      .header h1 {
+        font-size: 20px;
+      }
+
+      .sidebar-menu {
+        gap: 6px;
+      }
+
+      .sidebar-menu a {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .profile-info {
+        gap: 15px;
+      }
+
+      .profile-field {
+        padding: 12px;
+      }
+
+      .profile-field label {
+        font-size: 12px;
+      }
+
+      .profile-field input {
+        font-size: 14px;
+      }
+
+      .photo-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 8px;
+      }
+
+      .gallery-item {
+        height: 100px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
