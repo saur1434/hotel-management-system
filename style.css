@@ -207,7 +207,8 @@ header ul li a:hover::after {
 }
 
 @media only screen and (max-width: 768px) {
-  header ul {
+  header ul,
+  .nav-menu {
     display: block;
     position: fixed;
     left: -100%;
@@ -217,26 +218,30 @@ header ul li a:hover::after {
     width: 100%;
     border-radius: 10px;
     text-align: center;
-    transition: 0.5s;
+    transition: left 0.5s ease;
     box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     z-index: 20;
   }
 
-  header ul.active {
+  header ul.active,
+  .nav-menu.active {
     left: 0%;
   }
 
-  header ul li {
+  header ul li,
+  .nav-menu li {
     margin: 2.5rem 0;
   }
 
-  header ul li a {
+  header ul li a,
+  .nav-menu li a {
     color: black;
   }
 
   .hambuger {
     display: block;
     cursor: pointer;
+    z-index: 100;
   }
 
   .hambuger.active .bar:nth-child(2) {
@@ -2010,6 +2015,30 @@ footer li:hover {
 
 /* Extra Small Devices (320px - 479px) */
 @media (max-width: 479px) {
+  /* Mobile Menu Hamburger Fix */
+  .hambuger {
+    display: block !important;
+    z-index: 100;
+  }
+
+  header ul,
+  .nav-menu {
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  header ul li,
+  .nav-menu li {
+    margin: 1.5rem 0;
+  }
+
+  .nav-auth-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+    width: auto;
+    margin: 5px;
+  }
+
   /* Typography - Larger base for small screens */
   body {
     font-size: 15px;
@@ -2179,6 +2208,24 @@ footer li:hover {
 
 /* Small Devices (480px - 767px) */
 @media (min-width: 480px) and (max-width: 767px) {
+  /* Mobile Menu Hamburger */
+  .hambuger {
+    display: block !important;
+    z-index: 100;
+  }
+
+  header ul,
+  .nav-menu {
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  .nav-auth-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    width: auto;
+  }
+
   /* Typography */
   body {
     font-size: 15px;
