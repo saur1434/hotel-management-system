@@ -37,14 +37,14 @@ a {
 
 /*--------------header--------*/
 header {
-  height: 8vh;
+  height: 10vh;
   position: sticky;
   top: 0;
   z-index: 50;
   background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 32px rgba(28,41,71,0.08);
-  border-bottom: 2px solid rgba(193, 176, 134, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(28,41,71,0.12);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .logo {
@@ -66,21 +66,23 @@ header {
 }
 
 .brand-name {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
   font-family: 'Roboto Slab', serif;
+  text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
 }
 
 header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 15px;
+  gap: 20px;
 }
 
 .hambuger {
@@ -102,47 +104,94 @@ header ul {
   align-items: center;
 }
 
-header ul li {
+header ul li {2.5rem;
+  position: relative
   margin-left: 3rem;
 }
 
 header ul li a {
   font-size: 1.05rem;
-  font-weight: 500;
-  color: #222;
-  transition: color 0.25s ease, transform 0.25s ease;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+header ul li a::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease;
+  margin-right: 4px;
+}
+
+header ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 header ul li a:hover {
-  color: #C1B086;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+header ul li a:hover::after {
+  width: 100%;
 }
 
 /* Auth buttons in header */
 .nav-auth-btn {
   background: none;
-  border: none;
-  color: #222;
-  font-weight: 600;
+  border: 2px solid transparent;
+  color: #2c3e50;
+  font-weight: 700;
   cursor: pointer;
   font-size: 0.95rem;
-  padding: 6px 12px;
-  border-radius: 24px;
-  transition: all 0.25s ease;
+  padding: 8px 18px;
+  border-radius: 28px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .nav-auth-btn.owner-btn {
   color: #2b9cc0;
-  border: 1px solid #2b9cc0;
+  border: 2px solid #2b9cc0;
+}
+
+.nav-auth-btn.owner-btn:hover {
+  background: rgba(43, 156, 192, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(43, 156, 192, 0.25);
 }
 
 .nav-auth-btn.customer-btn {
-  background: linear-gradient(90deg,#2b9cc0 0%, #C1B086 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  border: none;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.nav-auth-btn.customer-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
 }
 
 .nav-auth-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(43, 156, 192, 0.2);
+  transform: translateY(-3px);
 }
 
 @media only screen and (max-width: 768px) {
