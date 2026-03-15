@@ -1,6 +1,67 @@
 // Login & Registration system for hotel owners and customers
 (function () {
   // ============================================
+  // SERVER STATUS CHECK
+  // ============================================
+  
+  // Check if Node.js server is running
+  window.checkServerStatus = function() {
+    return fetch('/api/health')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Server not responding');
+      })
+      .then(data => {
+        showServerStatusBanner(true, data);
+        console.log('✅ Server Status:', data);
+        return true;
+      })
+      .catch(error => {
+        showServerStatusBanner(false, error);
+        console.error('❌ Server Status Error:', error);
+        return false;
+      });
+  };
+
+  // Show server status banner
+  function showServerStatusBanner(isOnline, data) {
+    const existingBanner = document.getElementById('serverStatusBanner');
+    if (existingBanner) existingBanner.remove();
+
+    const banner = document.createElement('div');
+    banner.id = 'serverStatusBanner';
+    
+    if (isOnline) {
+      banner.innerHTML = `
+        <div style="background: #4CAF50; color: white; padding: 15px; text-align: center; border-bottom: 3px solid #2E7D32;">
+          <strong>✅ Server Status: ONLINE</strong> | Node.js is running | Last checked: ${new Date().toLocaleTimeString()}
+        </div>
+      `;
+      banner.style.animation = 'slideDown 0.3s ease-out';
+    } else {
+      banner.innerHTML = `
+        <div style="background: #f44336; color: white; padding: 15px; text-align: center; border-bottom: 3px solid #d32f2f;">
+          <strong>❌ Server Status: OFFLINE</strong> | Node.js server is not responding | Check connection
+        </div>
+      `;
+      banner.style.animation = 'slideDown 0.3s ease-out';
+    }
+
+    document.body.insertAdjacentElement('afterbegin', banner);
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      if (document.getElementById('serverStatusBanner')) {
+        banner.style.opacity = '0';
+        banner.style.transition = 'opacity 0.3s ease-out';
+        setTimeout(() => banner.remove(), 300);
+      }
+    }, 5000);
+  }
+
+  // ============================================
   // SESSION MANAGEMENT FUNCTIONS
   // ============================================
   
@@ -91,14 +152,23 @@
 
   // Try immediate initialization
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuthModals);
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuthModals();
+      checkServerStatus();
+    });
   } else {
     // Page already loaded, initialize immediately
-    setTimeout(initAuthModals, 100);
+    setTimeout(() => {
+      initAuthModals();
+      checkServerStatus();
+    }, 100);
   }
 
   // Also initialize when page fully loads
-  window.addEventListener('load', initAuthModals);
+  window.addEventListener('load', () => {
+    initAuthModals();
+    checkServerStatus();
+  });
 
   function createAdminModal() {
     const html = `

@@ -1154,6 +1154,54 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
+// ============= HEALTH CHECK / STATUS =============
+
+// Server health check endpoint
+app.get('/api/health', (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: 'Node.js Server is running! ✅',
+    status: 'online',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'production'
+  });
+});
+
+// Server status page
+app.get('/', (req, res) => {
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Hotel Management System</title>
+      <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: #f5f5f5; }
+        .banner { background: #4CAF50; color: white; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .banner.error { background: #f44336; }
+        h1 { color: #333; }
+        .status { font-size: 18px; }
+        .link { margin-top: 30px; }
+        a { color: #667eea; text-decoration: none; }
+      </style>
+    </head>
+    <body>
+      <h1>🏨 Hotel Management System</h1>
+      <div class="banner">
+        <h2>✅ Node.js Server is RUNNING</h2>
+        <p class="status">Server Status: <strong>ONLINE</strong></p>
+        <p>Time: ${new Date().toLocaleString()}</p>
+      </div>
+      <div class="link">
+        <p>🚀 All systems operational!</p>
+        <p><a href="/index.html">← Back to Website</a></p>
+      </div>
+    </body>
+    </html>
+  `;
+  res.send(html);
+});
+
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route not found' });
 });
