@@ -8,6 +8,10 @@ const jwt = require('jsonwebtoken');
 const helmet = require('helmet');
 const nodemailer = require('nodemailer');
 const twilio = require('twilio');
+const rateLimit = require('express-rate-limit');
+const xss = require('xss');
+const validator = require('validator');
+const crypto = require('crypto');
 
 // Initialize data on startup (important for Render where file system is ephemeral)
 require('./init-data.js');
@@ -73,6 +77,119 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(express.static('.'));
 
+// ==================== PRODUCTION SECURITY FEATURES ====================
+
+// 1️⃣ RATE LIMITING - Prevent brute force and DDoS attacks
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: (req) => req.path === '/health' // Skip health checks
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Stricter limit for auth endpoints
+  message: 'Too many login attempts, please try again later.',
+  skipSuccessfulRequests: true
+});
+
+const paymentLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 20, // Max 20 payment attempts per hour
+  message: 'Too many payment attempts, please try again later.'
+});
+
+app.use(limiter); // Apply to all routes
+
+// 2️⃣ INPUT SANITIZATION - Prevent XSS and injection attacks
+app.use((req, res, next) => {
+  // Sanitize all request body fields
+  if (req.body && typeof req.body === 'object') {
+    Object.keys(req.body).forEach(key => {
+      if (typeof req.body[key] === 'string') {
+        req.body[key] = xss(req.body[key].trim());
+      }
+    });
+  }
+  // Sanitize query parameters
+  if (req.query && typeof req.query === 'object') {
+    Object.keys(req.query).forEach(key => {
+      if (typeof req.query[key] === 'string') {
+        req.query[key] = xss(req.query[key].trim());
+      }
+    });
+  }
+  next();
+});
+
+// 3️⃣ AUDIT LOGGING - Log all sensitive operations
+const auditLogFile = path.join(dataDir, 'audit.log');
+function logAudit(action, userId, details, status = 'success') {
+  const timestamp = new Date().toISOString();
+  const logEntry = {
+    timestamp,
+    action,
+    userId: userId || 'anonymous',
+    details,
+    status,
+    ip: this.ip || 'unknown'
+  };
+  
+  const logMessage = `[${timestamp}] ${action} | User: ${userId || 'anonymous'} | Status: ${status} | Details: ${JSON.stringify(details)}\n`;
+  
+  try {
+    fs.appendFileSync(auditLogFile, logMessage, 'utf8');
+  } catch (error) {
+    console.error('❌ Audit log error:', error.message);
+  }
+}
+
+// Make audit logger available to request context
+app.use((req, res, next) => {
+  req.auditLog = logAudit.bind({ ip: req.ip });
+  next();
+});
+
+// 4️⃣ DATA ENCRYPTION UTILITIES - Encrypt sensitive data at rest
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || 'default-encryption-key-change-in-production';
+const ALGORITHM = 'aes-256-cbc';
+
+function encryptData(data) {
+  try {
+    const iv = crypto.randomBytes(16);
+    const key = crypto.scryptSync(ENCRYPTION_KEY, 'salt', 32);
+    const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
+    let encrypted = cipher.update(JSON.stringify(data));
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
+    return iv.toString('hex') + ':' + encrypted.toString('hex');
+  } catch (error) {
+    console.error('❌ Encryption error:', error.message);
+    return data; // Return unencrypted as fallback
+  }
+}
+
+function decryptData(encryptedData) {
+  try {
+    if (!encryptedData || typeof encryptedData !== 'string' || !encryptedData.includes(':')) {
+      return encryptedData;
+    }
+    const parts = encryptedData.split(':');
+    const iv = Buffer.from(parts[0], 'hex');
+    const encrypted = Buffer.from(parts[1], 'hex');
+    const key = crypto.scryptSync(ENCRYPTION_KEY, 'salt', 32);
+    const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
+    let decrypted = decipher.update(encrypted);
+    decrypted = Buffer.concat([decrypted, decipher.final()]);
+    return JSON.parse(decrypted.toString());
+  } catch (error) {
+    console.error('❌ Decryption error:', error.message);
+    return encryptedData; // Return as-is if decryption fails
+  }
+}
+
 // Data directories
 const dataDir = path.join(__dirname, 'data');
 const usersFile = path.join(dataDir, 'users.json');
@@ -98,6 +215,39 @@ function isValidPhone(phone) {
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// 🔒 ADVANCED INPUT VALIDATION FUNCTIONS
+function validateInput(value, type = 'string', options = {}) {
+  if (!value) return false;
+  
+  switch (type) {
+    case 'email':
+      return validator.isEmail(value);
+    case 'phone':
+      return validator.isMobilePhone(value, 'any', { strictMode: false });
+    case 'password':
+      // Min 8 chars, at least 1 uppercase, 1 lowercase, 1 number, 1 special char
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return options.strict ? passwordRegex.test(value) : value.length >= 6;
+    case 'name':
+      return validator.isLength(value, { min: 2, max: 50 }) && /^[a-zA-Z\s]+$/.test(value);
+    case 'url':
+      return validator.isURL(value);
+    case 'integer':
+      return validator.isInt(value.toString());
+    case 'alphanumeric':
+      return validator.isAlphanumeric(value);
+    default:
+      return validator.isLength(value.toString(), { min: 1, max: 255 });
+  }
+}
+
+function sanitizeInput(input) {
+  if (typeof input === 'string') {
+    return xss(validator.trim(input));
+  }
+  return input;
 }
 
 // Configure Email Transporter (Gmail/SMTP)
@@ -428,7 +578,7 @@ app.post('/api/customer/verify-otp', async (req, res) => {
   }
 });
 
-app.post('/api/customer/login', async (req, res) => {
+app.post('/api/customer/login', authLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -605,7 +755,7 @@ app.post('/api/owner/verify-otp', async (req, res) => {
   }
 });
 
-app.post('/api/owner/login', async (req, res) => {
+app.post('/api/owner/login', authLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -644,7 +794,7 @@ app.post('/api/owner/login', async (req, res) => {
 });
 
 // Admin Login Endpoint
-app.post('/api/admin/login', async (req, res) => {
+app.post('/api/admin/login', authLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -742,7 +892,7 @@ app.get('/api/booking/list', authenticateToken, (req, res) => {
 
 // ============= PAYMENT ROUTES =============
 
-app.post('/api/payment/process', (req, res) => {
+app.post('/api/payment/process', paymentLimiter, (req, res) => {
   const { paymentMethod, amount, bookingId, cardName, cardEmail, upiId, upiName } = req.body;
 
   if (!paymentMethod || !amount) {
