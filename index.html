@@ -327,7 +327,7 @@
         <div class="content">
           <div class="box flex">
             <i class="fas fa-swimming-pool"></i>
-            <span>Swimming pool</span>
+            <span>hotels</span>
           </div>
           <div class="box flex">
             <i class="fas fa-dumbbell"></i>
@@ -335,11 +335,11 @@
           </div>
           <div class="box flex">
             <i class="fas fa-spa"></i>
-            <span>Spa & massage</span>
+            <span>private cabbins</span>
           </div>
           <div class="box flex">
             <i class="fas fa-ship"></i>
-            <span>Boat Tours</span>
+            <span>private cafe</span>
           </div>
           <div class="box flex">
             <i class="fas fa-swimmer"></i>
@@ -355,7 +355,7 @@
           </div>
           <div class="box flex">
             <i class="fas fa-umbrella-beach"></i>
-            <span>Private Beach</span>
+            <span></span>
           </div>
         </div>
       </div>
@@ -569,7 +569,7 @@
   <!-- Leaflet map (OpenStreetMap) - no API key required -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const defaultPos = [27.69383745, 85.32395955];
+      const defaultPos = [34.2008, 75.5761]; // NIT Srinagar
       const map = L.map('map').setView(defaultPos, 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -612,7 +612,7 @@
         // center on default position and show hotel marker
         map.setView(defaultPos, 13);
         if (!userMarker) {
-          L.marker(defaultPos).addTo(map).bindPopup('GoCabn Go (default)').openPopup();
+          L.marker(defaultPos).addTo(map).bindPopup('NIT Srinagar - Default Location').openPopup();
         }
       }
 
