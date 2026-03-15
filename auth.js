@@ -27,6 +27,9 @@
 
   // Show server status banner
   function showServerStatusBanner(isOnline, data) {
+    // Disabled - no status banner notifications
+    return;
+    
     const existingBanner = document.getElementById('serverStatusBanner');
     if (existingBanner) existingBanner.remove();
 
