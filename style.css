@@ -214,13 +214,17 @@ header ul li a:hover::after {
     left: -100%;
     top: 5rem;
     flex-direction: column;
-    background-color: #fff;
+    background: linear-gradient(135deg, rgba(22, 33, 62, 0.98) 0%, rgba(15, 20, 25, 0.98) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 211, 255, 0.2);
     width: 100%;
-    border-radius: 10px;
+    max-width: 100%;
+    border-radius: 0;
     text-align: center;
     transition: left 0.5s ease;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 15px 40px rgba(16, 211, 255, 0.2);
     z-index: 20;
+    padding: 20px 0;
   }
 
   header ul.active,
@@ -230,12 +234,20 @@ header ul li a:hover::after {
 
   header ul li,
   .nav-menu li {
-    margin: 2.5rem 0;
+    margin: 1.5rem 0;
+    padding: 0 15px;
   }
 
   header ul li a,
   .nav-menu li a {
-    color: black;
+    color: #d0d0d0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  header ul li a:hover,
+  .nav-menu li a:hover {
+    color: #10d3ff;
+    text-shadow: 0 0 10px rgba(16, 211, 255, 0.4);
   }
 
   .hambuger {
@@ -2082,22 +2094,28 @@ footer li:hover {
 
   /* Home Section */
   .home {
-    min-height: 500px;
+    min-height: 600px;
+    padding: 40px 0;
   }
 
   .home .text {
-    margin: 5% 0 0 5%;
-    padding: 30px 20px;
+    margin: 8% auto;
+    padding: 40px 25px;
+    max-width: 100%;
+    width: 95%;
+    border-radius: 15px;
   }
 
   .home h1 {
-    font-size: 28px;
-    line-height: 1.1;
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 15px;
   }
 
   .home p {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 15px;
+    line-height: 26px;
+    opacity: 0.95;
   }
 
   button {
@@ -2107,20 +2125,26 @@ footer li:hover {
 
   /* Grids and Layout */
   .grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
   }
 
   .stats-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+  }
+
+  .room .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* Tables */
   table {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 
   table th, table td {
-    padding: 10px 6px !important;
+    padding: 12px 8px !important;
   }
 
   /* Modals */
@@ -2174,22 +2198,72 @@ footer li:hover {
   /* Wrapper sections */
   .wrapper .text {
     width: 90%;
-    padding: 20px;
+    padding: 35px 25px;
     height: auto;
+    background: linear-gradient(135deg, rgba(16, 211, 255, 0.12) 0%, rgba(83, 52, 131, 0.12) 100%);
+    border: 1px solid rgba(16, 211, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(16, 211, 255, 0.08);
+    border-radius: 15px;
+  }
+
+  .wrapper .text h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  .wrapper .text p {
+    font-size: 14px;
+    line-height: 24px;
   }
 
   .wrapper .content {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   /* Sidebar in dashboard */
   .sidebar-menu {
-    gap: 6px;
+    gap: 8px;
   }
 
   .sidebar-menu a {
-    padding: 10px 8px;
-    font-size: 11px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  /* Sections padding consistency */
+  .heading h2 {
+    font-size: 26px;
+    margin: 20px 0 15px 0;
+  }
+
+  .heading p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .room .text {
+    padding: 20px;
+  }
+
+  .room h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .room p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* Card improvements */
+  .room .box:hover {
+    transform: translateY(-8px);
+  }
+
+  .stat-card {
+    padding: 25px;
   }
 
   /* Gallery */
@@ -2200,9 +2274,36 @@ footer li:hover {
 
   .owl-carousel .owl-prev,
   .owl-carousel .owl-next {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    top: 40%;
+  }
+
+  .owl-carousel .owl-prev {
+    left: 15px;
+  }
+
+  .owl-carousel .owl-next {
+    right: 15px;
+  }
+
+  /* About section consistency */
+  .about .text {
+    padding: 25px 0;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .about .img {
+    margin-bottom: 30px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
   }
 }
 
