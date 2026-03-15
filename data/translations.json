@@ -12,8 +12,8 @@
     "nav.admin": "Administrator",
 
     "home.title": "Welcome, Honoured Guest",
-    "home.desc": "Experience world-class hospitality at Go Cabn - Your trusted network for curated property bookings across India.",
-    "btn.moreInfo": "Learn More",
+    "home.desc": "✨ Discover premium properties with world-class amenities across India. Enjoy luxurious rooms, fine dining, wellness spa facilities, and curated experiences tailored just for you. Your perfect getaway awaits!",
+    "btn.moreInfo": "Explore Our Facilities",
 
     "book.checkin": "Check-in Date:",
     "book.checkout": "Checkout Date:",
@@ -25,11 +25,18 @@
     "btn.viewAll": "View All",
     "btn.viewGallery": "View Gallery",
 
-    "footer.about": "Go Cabn - Connecting travellers with premium property experiences in curated locations across India.",
+    "footer.about": "🏆 At Go Cabn, indulge in premium hospitality featuring lavish rooms, multi-cuisine restaurants, rejuvenating spa services, recreational activities, and exceptional 24/7 concierge support across India's most sought-after destinations.",
     "footer.acceptedMethods": "Accepted Payment Methods",
     "footer.recentNews": "Latest News",
     "footer.forCustomers": "For Guests",
     "footer.contactUs": "Contact Us",
+
+    "facilities.title": "Premium Amenities & Services",
+    "facilities.luxury": "💎 Luxury Rooms - Lavish suites with premium furnishings, modern amenities, and breathtaking views",
+    "facilities.dining": "🍽️ Fine Dining - Award-winning multi-cuisine restaurants with talented chefs and exceptional service",
+    "facilities.spa": "🧖 Wellness Spa - Rejuvenating treatments, traditional therapies, and holistic wellness programmes",
+    "facilities.activities": "🎯 Curated Activities - Adventure sports, cultural tours, yoga sessions, and personalised experiences",
+    "facilities.concierge": "🎩 24/7 Concierge - Expert assistance for reservations, tours, transportation, and special requests",
 
     "admin.title": "Administrator Dashboard",
     "menu.dashboard": "Dashboard",
