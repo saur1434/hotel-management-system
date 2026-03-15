@@ -80,13 +80,34 @@
       navMenu.classList.toggle("active");
     }
 
+    // Close menu when navigation links are clicked
     const navLink = document.querySelectorAll('.nav-link');
     navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+    // Close menu when auth buttons are clicked
+    const authButtons = document.querySelectorAll('.nav-auth-btn');
+    authButtons.forEach((btn) => btn.addEventListener("click", closeMenu));
+
+    // Close menu when language is changed
+    const langSelector = document.querySelector('#langSelector');
+    if (langSelector) {
+      langSelector.addEventListener("change", closeMenu);
+    }
 
     function closeMenu() {
       hambuger.classList.remove("active");
       navMenu.classList.remove("active");
     }
+
+    // Also close menu when clicking outside
+    document.addEventListener("click", function(event) {
+      const isClickInsideMenu = navMenu.contains(event.target);
+      const isClickInsideHamburger = hambuger.contains(event.target);
+      
+      if (!isClickInsideMenu && !isClickInsideHamburger && navMenu.classList.contains("active")) {
+        closeMenu();
+      }
+    });
   </script>
 
   <section class="home" id="home">

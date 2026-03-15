@@ -237,9 +237,10 @@ header ul li a:hover::after {
 
   header ul li,
   .nav-menu li {
-    margin: 1.5rem 0;
+    margin: 6px 0;
     padding: 0 15px;
     list-style: none;
+    display: block;
   }
 
   header ul li a,
@@ -259,12 +260,15 @@ header ul li a:hover::after {
 
   /* Mobile Auth Buttons */
   .nav-auth-btn {
-    display: inline-block !important;
-    padding: 10px 16px !important;
-    margin: 8px 5px !important;
-    font-size: 12px !important;
-    border-radius: 6px !important;
-    width: auto !important;
+    display: block !important;
+    padding: 12px 16px !important;
+    margin: 8px auto !important;
+    font-size: 13px !important;
+    border-radius: 8px !important;
+    width: 85%;
+    max-width: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
   .nav-auth-btn.admin-btn {
@@ -273,15 +277,44 @@ header ul li a:hover::after {
     border: 1px solid rgba(102, 126, 234, 0.4);
   }
 
+  .nav-auth-btn.admin-btn:hover {
+    background: rgba(102, 126, 234, 0.35);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+  }
+
   .nav-auth-btn.owner-btn {
     background: rgba(16, 211, 255, 0.1);
     color: #10d3ff;
     border: 1px solid rgba(16, 211, 255, 0.2);
   }
 
+  .nav-auth-btn.owner-btn:hover {
+    background: rgba(16, 211, 255, 0.25);
+    box-shadow: 0 0 15px rgba(16, 211, 255, 0.3);
+  }
+
   .nav-auth-btn.customer-btn {
     background: linear-gradient(135deg, rgba(16, 211, 255, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%);
     border: 1px solid rgba(16, 211, 255, 0.3);
+  }
+
+  .nav-auth-btn.customer-btn:hover {
+    background: linear-gradient(135deg, rgba(16, 211, 255, 0.3) 0%, rgba(255, 215, 0, 0.15) 100%);
+    box-shadow: 0 0 15px rgba(16, 211, 255, 0.3);
+  }
+
+  .lang-select {
+    display: block !important;
+    margin: 15px auto !important;
+    text-align: center;
+  }
+
+  .lang-select select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(16, 211, 255, 0.1);
+    border: 1px solid rgba(16, 211, 255, 0.2);
+    color: #d0d0d0;
   }
 
   .hambuger {
