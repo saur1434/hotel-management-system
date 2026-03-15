@@ -12,8 +12,8 @@ html,
 body {
   font-family: 'Roboto Slab', serif;
   scroll-behavior: smooth;
-  background: linear-gradient(180deg, #f6f8fb 0%, #ffffff 100%);
-  color: #222;
+  background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 50%, #16213e 100%);
+  color: #e8e8e8;
 }
 
 li {
@@ -41,21 +41,22 @@ header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(28,41,71,0.12);
-  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 50px rgba(16, 211, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(16, 211, 255, 0.2);
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 12px rgba(16, 211, 255, 0.4));
 }
 
 .logo img {
@@ -68,13 +69,14 @@ header {
 .brand-name {
   font-size: 32px;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #10d3ff 0%, #ffd700 50%, #e91e63 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -1px;
   font-family: 'Roboto Slab', serif;
-  text-shadow: 0 2px 4px rgba(102, 126, 234, 0.1);
+  text-shadow: 0 2px 8px rgba(16, 211, 255, 0.3);
+  filter: drop-shadow(0 0 8px rgba(16, 211, 255, 0.2));
 }
 
 header nav {
@@ -112,41 +114,46 @@ header ul li {2.5rem;
 header ul li a {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: #e0e0e0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 header ul li a::before {
   content: '';
   display: inline-block;
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #10d3ff 0%, #ffd700 100%);
   border-radius: 50%;
   opacity: 0;
   transition: all 0.3s ease;
   margin-right: 4px;
+  box-shadow: 0 0 10px rgba(16, 211, 255, 0.5);
 }
 
 header ul li a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -3px;
   left: 0;
   width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  height: 3px;
+  background: linear-gradient(90deg, #10d3ff 0%, #ffd700 50%, #e91e63 100%);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(16, 211, 255, 0.6);
 }
 
 header ul li a:hover {
-  color: #667eea;
-  transform: translateY(-2px);
+  color: #10d3ff;
+  transform: translateY(-3px);
+  text-shadow: 0 0 10px rgba(16, 211, 255, 0.4);
 }
 
 header ul li a:hover::after {
@@ -157,37 +164,42 @@ header ul li a:hover::after {
 .nav-auth-btn {
   background: none;
   border: 2px solid transparent;
-  color: #2c3e50;
+  color: #e0e0e0;
   font-weight: 700;
   cursor: pointer;
   font-size: 0.95rem;
-  padding: 8px 18px;
+  padding: 10px 22px;
   border-radius: 28px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .nav-auth-btn.owner-btn {
-  color: #2b9cc0;
-  border: 2px solid #2b9cc0;
+  color: #10d3ff;
+  border: 2px solid #10d3ff;
+  box-shadow: 0 0 15px rgba(16, 211, 255, 0.2);
 }
 
 .nav-auth-btn.owner-btn:hover {
-  background: rgba(43, 156, 192, 0.08);
+  background: rgba(16, 211, 255, 0.15);
   transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(43, 156, 192, 0.25);
+  box-shadow: 0 0 25px rgba(16, 211, 255, 0.5), inset 0 0 20px rgba(16, 211, 255, 0.1);
+  text-shadow: 0 0 10px rgba(16, 211, 255, 0.6);
 }
 
 .nav-auth-btn.customer-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #10d3ff 0%, #ffd700 50%, #e91e63 100%);
+  color: #0f1419;
   border: none;
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(16, 211, 255, 0.4);
+  font-weight: 800;
 }
 
 .nav-auth-btn.customer-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(16, 211, 255, 0.6), 0 0 25px rgba(255, 215, 0, 0.3);
 }
 
 .nav-auth-btn:hover {
@@ -247,7 +259,7 @@ header ul li a:hover::after {
   position: relative;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #533483 100%);
   overflow: hidden;
 }
 
@@ -261,7 +273,7 @@ header ul li a:hover::after {
   background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=2000&q=80');
   background-size: cover;
   background-position: center;
-  opacity: 0.25;
+  opacity: 0.15;
   z-index: 0;
 }
 
@@ -287,47 +299,59 @@ header ul li a:hover::after {
   max-width: 52%;
   color: white;
   margin: 18% 0 0 8%;
-  text-shadow: 0 6px 24px rgba(15, 25, 40, 0.4);
-  background: linear-gradient(135deg, rgba(43, 156, 192, 0.85) 0%, rgba(193, 176, 134, 0.85) 100%);
-  padding: 40px 35px;
-  border-radius: 15px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 0 6px 24px rgba(15, 25, 40, 0.6);
+  background: linear-gradient(135deg, rgba(16, 211, 255, 0.15) 0%, rgba(255, 215, 0, 0.1) 100%);
+  padding: 50px 45px;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(16, 211, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(16, 211, 255, 0.3);
 }
 
 .home h1 {
-  font-size: 64px;
+  font-size: 72px;
   line-height: 1.02;
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin-bottom: 10px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #ffffff 0%, #10d3ff 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .home p {
   font-weight: 400;
-  line-height: 25px;
+  line-height: 28px;
   font-family: sans-serif;
   font-size: 17px;
   margin: 30px 0 0 0;
   opacity: 0.95;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  color: #e0e0e0;
 }
 
 button {
-  padding: 12px 28px;
+  padding: 14px 32px;
   outline: none;
   border: none;
   border-radius: 40px;
-  color: white;
+  color: #0f1419;
   margin-top: 20px;
-  background: linear-gradient(90deg,#2b9cc0 0%, #C1B086 100%);
-  box-shadow: 0 8px 20px rgba(193,176,134,0.18);
+  background: linear-gradient(135deg, #10d3ff 0%, #ffd700 50%, #e91e63 100%);
+  box-shadow: 0 12px 30px rgba(16, 211, 255, 0.3);
   cursor: pointer;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 15px;
 }
 
-button:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(193,176,134,0.22)}
+button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(16, 211, 255, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
+}
 
 .home button {
   margin-left: 0;
@@ -476,29 +500,35 @@ input {
   top: 0;
   left: 0;
   content: '';
-  width: 100px;
-  height: 4px;
-  background: #C1B086;
+  width: 120px;
+  height: 5px;
+  background: linear-gradient(90deg, #10d3ff 0%, #ffd700 100%);
+  box-shadow: 0 0 15px rgba(16, 211, 255, 0.5);
 }
 
 .heading h5 {
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 2px;
   padding-top: 20px;
-  color: #5f5f5f;
+  color: #10d3ff;
+  text-transform: uppercase;
 }
 
 .heading h2 {
-  font-size: 30px;
-  font-weight: 400;
+  font-size: 42px;
+  font-weight: 800;
   margin: 20px 0 40px 0;
-  color: #222222;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #10d3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .heading p {
   margin-bottom: 20px;
-  line-height: 25px;
-  color: #5f5f5f;
+  line-height: 28px;
+  color: #d0d0d0;
   margin: 0 0 20px 50px;
 }
 
@@ -507,8 +537,9 @@ input {
 }
 
 .btn1 {
-  background: #C1B086;
-  color: white;
+  background: linear-gradient(135deg, #10d3ff 0%, #ffd700 100%);
+  color: #0f1419;
+  font-weight: 700;
 }
 
 /*--------------about--------*/
@@ -520,12 +551,13 @@ input {
   width: 100%;
   height: 480px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 20px 60px rgba(16, 211, 255, 0.2);
 }
 
 .wrapper .text {
-  background: #3f9cc1;
+  background: linear-gradient(135deg, rgba(16, 211, 255, 0.9) 0%, rgba(83, 52, 131, 0.9) 100%);
   padding: 50px;
   width: 40%;
   height: 600px;
@@ -534,6 +566,10 @@ input {
   right: 10%;
   padding-top: 10%;
   color: white;
+  border-radius: 15px;
+  box-shadow: 0 25px 60px rgba(16, 211, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(16, 211, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .wrapper .content {
@@ -543,7 +579,9 @@ input {
 }
 
 .wrapper h2 {
-  font-weight: 400;
+  font-weight: 800;
+  color: white;
+  font-size: 28px;
 }
 
 .wrapper p {
@@ -574,10 +612,27 @@ input {
 .room img {
   width: 100%;
   height: 100%;
+  border-radius: 12px 12px 0 0;
+  transition: all 0.3s ease;
 }
 
 .room .box {
-  box-shadow: 0 13px 43px 0 rgb(37 46 89/10%);
+  box-shadow: 0 20px 50px rgba(16, 211, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(16, 211, 255, 0.08) 0%, rgba(255, 215, 0, 0.05) 100%);
+  border: 1px solid rgba(16, 211, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room .box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px rgba(16, 211, 255, 0.25);
+  border-color: rgba(16, 211, 255, 0.4);
+}
+
+.room .box:hover img {
+  transform: scale(1.05);
 }
 
 .room {
@@ -585,21 +640,28 @@ input {
 }
 
 .room .text {
-  padding: 20px;
+  padding: 25px;
 }
 
 .room h3 {
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-size: 20px;
 }
 
 .room p span {
-  font-size: 12px;
-  color: grey;
+  font-size: 13px;
+  color: #10d3ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .room p {
-  font-size: 20px;
+  font-size: 22px;
+  color: #ffd700;
+  font-weight: 800;
 }
 
 /*--------------room--------*/
